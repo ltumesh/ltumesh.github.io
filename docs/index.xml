@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>LTU Mesh</title>
+    <link>https://ltumesh.github.io/</link>
+    <description>Recent content on LTU Mesh</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 08 Jul 2018 11:32:40 +0900</lastBuildDate>
+    
+	<atom:link href="https://ltumesh.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Home</title>
+      <link>https://ltumesh.github.io/home/home/</link>
+      <pubDate>Sun, 08 Jul 2018 11:32:40 +0900</pubDate>
+      
+      <guid>https://ltumesh.github.io/home/home/</guid>
+      <description>Hello Hugo!</description>
+    </item>
+    
+  </channel>
+</rss>
