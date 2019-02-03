@@ -82,24 +82,31 @@ h2, h3, h4 {
 	margin-bottom: 0.1em;
 }
 
-/* Style images within the navigation bar. All images should be within a link
- * that is within a list item. */
-nav > ul > li > a > img {
-	height: 48px; /* Set height to fill more than available navigation bar space. */
-	width: auto; /* Some browsers will no keep aspect ratio, ensure auto width */
-	margin-top: -16px; /* Set negative margin-top so it can fill even when there isn't any available space due to navigation bar padding. */
-	margin-bottom: -19px; /* Same as above, but for margin-bottom. */
+/* Style images within the navigation bar. All images should be within a link. */
+nav > a > img {
+	display: inline-block;
+	height: 48px; /* Set height to fill available navigation bar space. */
+	width: 48px;
+	margin: 0;
+}
+
+nav > a {
+	line-height: 0;
 }
 
 /* The navigation bar is fixed to the top of the page and is always shown even
  * when scrolling. It is forced to be located at the leftmost-topmost location
  * of the document. */
-nav {
+header {
 	position: fixed;
 	width: 100%;
 	top: 0;
 	left: 0;
 	background-color: #3d518c;
+}
+
+nav > ul, nav > a {
+	display: inline-block;
 }
 
 /* Style both navigation bar lists and sub-lists. This will remove the bullet
@@ -142,12 +149,19 @@ nav > ul > li:hover > ul {
 	z-index: 1;
 	position: absolute;
 	display: inline-block;
+	margin: 0;
 }
 
 /* Hovered list items are highlighted in the navigation bar. Also list items
  * marked with the active class are styled with a highlighted background. */
 nav > ul > li a:hover, nav > ul > li.active a  {
 	background-color: #1a936f;
+}
+
+/* Hide hamburger menu per default, only displayed for low resolution devices.
+ * */
+nav > input[type=checkbox], nav > span {
+	display: none;
 }
 
 /* Pad the main container with 51px (height of navigation bar) and set a bottom
@@ -221,7 +235,7 @@ footer > div > section {
 
 /* Set the main container, navigation bar content, and footer rows to be at most
  * 800px wide and centered in the middle of the document. */
-main, nav > ul, footer > div {
+main, nav, footer > div {
 	max-width: 800px;
 	margin: 0 auto;
 }
@@ -286,4 +300,114 @@ input[type="reset"] {
   margin-top: -51px;
   height: 51px;
   visibility: hidden;
+}
+
+@media only screen and (max-width: 800px) {
+	main, footer {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+	/* Enforce height of nav as the items are placed outside of the
+	 * viewport. */
+	nav {
+		height: 48px;
+	}
+
+	/* Position the logotype in the middle of the nav bar instead. */
+	nav > a {
+		position: absolute;
+		left: 50%;
+		margin-left: -24px;
+	}
+
+	/* Move the ul-list (menu items) to the outside of the viewport. */
+	nav > ul {
+		position: absolute;
+		width: 200px;
+		top: 48px;
+
+		background: #3d518c;
+		list-style-type: none;
+
+		transform-origin: 0% 0%;
+		transform: translate(-100%, 0);
+
+		transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+	}
+
+	nav > ul > li {
+		width: 100%;
+	}
+
+	nav > ul > li > ul {
+		display: block;
+	}
+
+	nav > ul > li:hover > ul {
+		position: relative;
+		display: block;
+	}
+
+	nav  {
+		display: inline-block;
+	}
+
+	nav > input:checked ~ ul {
+		transform: none;
+	}
+
+	nav > input[type=checkbox] {
+		display: block;
+		width: 40px;
+		height: 40px;
+		position: absolute;
+
+		cursor: pointer;
+
+		opacity: 0;
+		z-index: 2;
+	}
+
+	nav > span {
+		display: block;
+		width: 42px;
+		height: 5px;
+		margin-top: 8px;
+		margin-bottom: 5px;
+		margin-left: 6px;
+		position: relative;
+
+		background: white;
+		border-radius: 3px;
+
+		z-index: 1;
+		transform-origin: 4px 0px;
+
+		transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+		background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+		opacity 0.55s ease;
+	}
+
+	nav > span:first-child {
+		transform-origin: 0% 0%;
+	}
+
+	nav > span:nth-last-child(2) {
+		transform-origin: 0% 100%;
+	}
+
+	nav > input:checked ~ span {
+		opacity: 1;
+		transform: rotate(45deg);
+	}
+
+	nav > input:checked ~ span:nth-last-child(3) {
+		opacity: 0;
+		transform: rotate(0deg) scale(0.2, 0.2);
+	}
+
+	nav > input:checked ~ span:nth-last-child(2) {
+		transform: rotate(-45deg);
+	}
 }
