@@ -304,26 +304,27 @@ input[type="reset"] {
 }
 
 @media only screen and (max-width: 800px) {
-	body {
-		overflow-x: hidden;
+	/* Reset the width so we do not get any overflow. */
+	html, body, main, footer, fieldset {
+		width: initial;
 	}
 
+	/* Due to resetting the with of main to 'initial' above, paddings has to
+	 * be added so the text isn't directly against the sides of the
+	 * viewport. */
 	main, footer {
 		padding-left: 20px;
 		padding-right: 20px;
 	}
 
-	/* Enforce height of nav as the items are placed outside of the
-	 * viewport. */
-	nav {
-		height: 48px;
-	}
-
 	/* Position the logotype in the middle of the nav bar instead. */
 	nav > a {
 		position: absolute;
+		top: 0;
 		left: 50%;
-		margin-left: -24px;
+
+		/* Offset with -25px because image is 50px wide. */
+		margin-left: -25px;
 	}
 
 	/* Move the ul-list (menu items) to the outside of the viewport. */
@@ -344,27 +345,24 @@ input[type="reset"] {
 		transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
 	}
 
+	/* Each list item should fill the width instead. */
 	nav > ul > li {
 		width: 100%;
 	}
 
+	/* The sub-menus are displayed as top level menus instead. */
 	nav > ul > li > ul {
 		display: block;
 	}
 
-	nav > ul > li:hover > ul {
-		position: relative;
-		display: block;
-	}
-
-	nav  {
-		display: inline-block;
-	}
-
+	/* Move the menu into the viewport when the hamburger menu has been
+	 * clicked. */
 	nav > input:checked ~ ul {
 		transform: none;
 	}
 
+	/* A checkbox is used to register the state of the menu, it's
+	 * transparent and is placed above the hamburger menu. */
 	nav > input[type=checkbox] {
 		display: block;
 
@@ -382,12 +380,13 @@ input[type="reset"] {
 		z-index: 2;
 	}
 
+	/* 3 spans within a nav creates a hamburger menu that transitions into
+	 * a X. */
 	nav > span {
 		display: block;
 		width: 42px;
 		height: 5px;
-		margin-top: 8px;
-		margin-bottom: 5px;
+		margin-top: 9px; /* (51px - (3 * 5px)) / 4 = 9 */
 		margin-left: 6px;
 		position: relative;
 
@@ -395,7 +394,7 @@ input[type="reset"] {
 		border-radius: 3px;
 
 		z-index: 1;
-		transform-origin: 4px 0px;
+		transform-origin: 0 0;
 
 		transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
 		background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
@@ -422,9 +421,5 @@ input[type="reset"] {
 
 	nav > input:checked ~ span:nth-last-child(2) {
 		transform: rotate(-45deg);
-	}
-
-	fieldset {
-		width: initial;
 	}
 }
