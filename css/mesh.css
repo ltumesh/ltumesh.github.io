@@ -355,6 +355,12 @@ input[type="reset"] {
 		display: block;
 	}
 
+	/* Override display on hover rule. */
+	nav > ul > li:hover > ul {
+		position: relative;
+		display: block;
+	}
+
 	/* Move the menu into the viewport when the hamburger menu has been
 	 * clicked. */
 	nav > input:checked ~ ul {
