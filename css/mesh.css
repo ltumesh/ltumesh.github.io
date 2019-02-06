@@ -104,10 +104,10 @@ header {
 }
 
 /* All list items are floated to the left (excluding the sub-list items). */
-nav > ul, nav > a, nav > ul > li {
+nav > a, nav > ul > li {
 	display: block;
 	float: left;
-	height: 51px;
+	height: 51px; /* Enforce height, 1 lone pixel on Chrome */
 }
 
 /* Style both navigation bar lists and sub-lists. This will remove the bullet
@@ -348,6 +348,7 @@ input[type="reset"] {
 
 	/* Each list item should fill the width instead. */
 	nav > ul > li {
+		height: initial;
 		width: 100%;
 	}
 
