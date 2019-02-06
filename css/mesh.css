@@ -387,9 +387,11 @@ input[type="reset"] {
 		opacity: 0;
 		z-index: 2;
 
-		/* Some browsers require that the checkbox is forced to 0, 0. */
 		top: 0;
 		left: 0;
+
+		margin: 0;
+		padding: 0;
 	}
 
 	/* 3 spans within a nav creates a hamburger menu that transitions into
